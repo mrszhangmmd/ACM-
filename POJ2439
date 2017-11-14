@@ -1,0 +1,45 @@
+#include<iostream>
+using namespace std;
+const int maxp=2000,n=10000;
+int prime[maxp],total=0;
+bool isprime(int k)   //判定k是否是素数
+{
+	for(int i=0;i<total;i++)
+	
+		if( k%prime[i]==0)
+		
+			return false;
+		
+		return true;
+	
+}
+
+
+int main (void)
+{
+	for(int i=2;i<n;i++)//建立素数表
+		if(isprime(i))
+			prime[total++]=i;
+		prime[total]=n+1;
+		int m;
+		cin>>m;       //输入第一个正整数
+    
+		while(m)      //循环直到正整数为0
+		{
+			int ans=0;
+			for(int i=0;m>=prime[i];i++)//枚举
+			{
+				int cnt=0;
+				for(int j=i;j<total && cnt<m;j++)
+				
+					cnt+=prime[j];
+				if(cnt==m)//如果刚好等于m，则累计回答数
+					++ans;
+				
+			}
+			cout<<ans<<endl;
+			cin>>m;
+		}
+		return 0;
+
+}
