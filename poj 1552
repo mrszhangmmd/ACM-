@@ -1,0 +1,31 @@
+#include <iostream>//Acm Mid_central USA 2003
+using namespace std;
+ int main()
+ { 
+	 int i,j,n,count,a[20];//声明变量 i j n
+	 cin>>a[0]; //输入第一个测试用例的首个数据
+	 while(a[0]!=-1)//如果输入没有结束 则输入下一个测试用例
+	 {
+		n=1;//读取当前数据组
+		for(  ;  ; n++)
+		{
+			cin>>a[n];
+			if (a[n]==0)
+				break;
+		}
+		count=0;//处理，计算当前测试用例中有多少对数满足两倍关系的
+		for(i=0;i<n-1;i++)//枚举所有数据对
+		{
+			for(j=i+1;j<n;j++)
+			{
+				if(a[i]*2==a[j] || a[j]*2==a[i])   //如果当前数据满足两倍关系则累计
+					count++;
+			}
+		}
+		cout<<count<<endl; //输出当前测试用例中满足两倍关系的数据对数
+		cin>>a[0];//输入下一个测试用例的首个数据
+
+
+	 }
+		return 0;
+ }
