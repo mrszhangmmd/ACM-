@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+
+const int N=204880;
+
+void Merge_Sort(int *a, int p,int q ,int r){
+
+	int i,j,k;
+	int n1=q-p+1;
+	int n2=r-q;
+	int *le=NULL;
+	int *ri=NULL;
+	le=new int [n1];
+	ri =new int [n2];
+	
+	for(i=0;i<n1;i++)
+	{
+		le[i]=a[p+i];
+	}
+	for(j=0;j<n2;j++)
+	{
+		ri[j]=a[q+j+1];
+
+	}
+	i=j=0;
+	k=p;
+
+	while(i<n1 && j<n2)
+	{
+		if(le[i]<=ri[j])
+			a[k++]=le[i++];
+		else a[k++]=ri[j++];
+
+	}
+   for(; i<n1;i++)
+   {
+	   a[k++]=le[i];
+   }
+	for(;j<n2;j++)
+	{
+		a[k++]=ri[j];
+	}
+}
+
+void Merge(int *a,int p,int r)
+{
+	if(p<r)
+	{
+		int q=(int)((r+p)/2);
+		Merge(a,p,q);
+		Merge(a,q+1,r);
+		Merge_Sort(a,p,q,r);
+	}
+}
+
+int main()
+{
+	int arr[7]={1,99,-7,-86,-56,84,15};
+
+	Merge(arr,0,6);//进行分解
+
+	for(int i=0;i<7;i++)
+		cout<<arr[i]<<endl;
+	return 0;
+}
