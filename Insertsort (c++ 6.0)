@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+void InertionSort(int *a,int len)
+{
+	int key,i;
+	for(int j=1;j<len;j++)
+	{
+		key=a[j];
+		//insert a[j] into the second sequencea[i..j-1].		
+		i=j-1;
+		while(i>=0 && a[i]>key)
+		{
+			a[i+1]=a[i];
+			i--;			
+		}
+		a[i+1]=key;
+	}
+}
+int main()
+{
+	int a[5];	
+	cout<<"输入待排序数组";
+	for( int i=0; i<5 ; i++)
+	{
+		cin>>a[i];
+	}
+	InertionSort(a,5);
+	cout<<"排好序后";
+	for( int m=0; m<5 ; m++)
+	{
+		cout<<a[m]<<" ";
+	}
+	cout<<endl;
+}
